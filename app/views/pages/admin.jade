@@ -1,0 +1,45 @@
+extends ../layout
+block content
+    .container
+        .row
+            form.form-horizontal(method="post", action='/admin/movie')
+                input(type="hidden", name="movie[_id]", value="#{movie._id}")
+                .form-group
+                    label.col-sm-2.control-laber(for="inputCategory") Category
+                    .col-sm-10
+                        input#inputCatgtory.form-control(type="text", name="movie[category]", value="#{movie.category}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputTitle') Title
+                    .col-sm-10
+                        input#inputTitle.form-control(type='text', name="movie[title]", value="#{movie.title}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputDirector') Director
+                    .col-sm-10
+                        input#inputDirector.form-control(type='text', name="movie[director]", value="#{movie.director}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputCountry') Country
+                    .col-sm-10
+                        input#inputCountry.form-control(type='text', name="movie[country]", value="#{movie.country}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputLanguage') Language
+                    .col-sm-10
+                        input#inputLanguage.form-control(type='text', name="movie[language]", value="#{movie.language}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputPoster') Poster
+                    .col-sm-10
+                        input#inputPoster.form-control(type='text', name="movie[poster]", value="#{movie.poster}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputFlash') Flash
+                    .col-sm-10
+                        input#inputFlash.form-control(type='text', name="movie[flash]", value="#{movie.flash}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputYear') Year
+                    .col-sm-10 
+                        input#inputYear.form-control(type='text', name="movie[year]", value="#{movie.year}")
+                .form-group
+                    label.col-sm-2.control-laber(for='inputSummary') Summary
+                    .col-sm-10
+                        input#inputSummary.form-control(type='text', name="movie[summary]", value="#{movie.summary}")
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type="submit") Record

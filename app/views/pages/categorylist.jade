@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+	.container
+			.row
+				table.table.table-hover.table-bordered
+					thead
+						tr
+							th Name
+							th Time
+							th Check
+							th Updata
+							th Delete
+					tbody
+						each item in categories
+							tr(class="item-id-#{item._id}")
+								td #{item.name}
+								td #{moment(item.meta.updataAt).format("MM/DD/YYYY")}
+								td: a(target="_blank", href="../movie/#{item._id}") CHECK
+								//- td: a(target="_blank", href="../admin/update/#{item._id}") UPDATE
+								td
+									//- button.btn.btn-danger.del(type="button", data-id="#{item._id}") DELETE

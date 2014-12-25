@@ -1,0 +1,49 @@
+.container
+	.row
+		.page-header
+			h1 #{title}
+			small serious fantasity fans
+.navbar.navbar-default.navbar-fixed-top
+	.container
+		.navbar-header
+			a.navbar-brand(href="/") SERIOUS FANTASITY FANS
+		if user
+			p.navbar-text.navbar-right
+				span Welcome, #{user.name}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/logout") LogOut
+		else
+			p.navbar-text.navbar-right
+				a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") Register
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") SignIn
+#signupModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST", action="/user/signup")
+				.modal-header Register
+				.modal-body
+					.form-group
+						label(for="signupName") Username
+						input#signupName.form-control(name="user[name]", type="text")
+					.form-group
+						label(for="signuppassword") Userpassword
+						input#signuppassword.form-control(name="user[password]", type="password")
+				.modal-footer
+					button.btn.btn-default(type="button", data-dismiss="modal") Close
+					button.btn.btn-success(type="submit") Submit
+#signinModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST", action="/user/signin")
+				.modal-header SignIn
+				.modal-body
+					.form-group
+						label(for="signinName") Username
+						input#signinName.form-control(name="user[name]", type="text")
+					.form-group
+						label(for="signinpassword") Userpassword
+						input#signinpassword.form-control(name="user[password]", type="password")
+				.modal-footer
+					button.btn.btn-default(type="button", data-dismiss="modal") Close
+					button.btn.btn-success(type="submit") Submit
