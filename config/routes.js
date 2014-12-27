@@ -11,10 +11,13 @@ module.exports = function(app){
 		app.locals.user = _user;
 		next();
 	});
+	
 	//Admin
 	app.use('/admin', User.signinRequired, User.adminRequired);
+
 	//Index
 	app.get('/', Index.index);
+	app.get('/results', Index.search)
 
 	//User 
 	app.post('/user/signup', User.signup);
@@ -30,7 +33,7 @@ module.exports = function(app){
 	//admin
 		//movie
 	app.get('/admin/movie/new', Movie.new);
-	app.post('/admin/movie', Movie.save);
+	app.post('/admin/movie', Movie.savePoster, Movie.save);
 	app.get('/admin/movie/update/:id', Movie.update);
 	app.get('/admin/movielist', Movie.list);
 	app.delete('/admin/movie/list', Movie.del);

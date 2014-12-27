@@ -4,10 +4,30 @@ var path = require('path');
 //middleware import
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var morgan = require('morgan');
 var mongoStore = require('connect-mongo')(session);
+
+
+var fs = require('fs');
+//models loading
+var models_path = __dirname + 'app/models/';
+var walk = function(path){
+	fs.readdirSync(path).forEach(function(file){
+		var newPath = path + '/' + file;
+		var stat = fs.statSync(newPath);
+
+		if(stat.isFile()){
+			if(/(.*)\.(js|coffee)/.test(file)){
+				require(newPath)
+			}
+		}else if(stat.isDirectory()){
+			walk(newpath)
+		}
+	})
+}
 
 //connect to db
 var dbUrl = "mongodb://localhost/imooc";
@@ -27,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(multer());
 app.use(session({
 	secret: 'imooc'
 	,resave: false

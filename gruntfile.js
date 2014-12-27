@@ -31,19 +31,41 @@ module.exports = function(grunt){
 					,cwd: __dirname
 				}
 			}
-		},
-		concurrent: {
-			tasks: ['nodemon', 'watch']
+		}
+		,nodeInspector: {
+			dev: {
+				options: {
+			      'web-port': 1337,
+			      'web-host': 'localhost',
+			      'debug-port': 5857,
+			      'save-live-edit': true,
+			      'no-preload': true,
+			      'stack-trace-limit': 4,
+			      'hidden': ['node_modules']
+			    }
+			}
+		}
+		,concurrent: {
+			tasks: ['nodemon', 'watch', "nodeInspector"]
 			,options: {
 				logConcurrentOutput: true
 			}
 		}
+		,mochaTest: {
+			options: {
+			reporter: 'spec'
+			},
+			src: ['test/**/*.js']
+	    }
 	})
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-nodemon');
 	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.loadNpmTasks('grunt-node-inspector');
+	grunt.loadNpmTasks('grunt-mocha-test');
 
 	grunt.option('force', true);
 	grunt.registerTask('default', ['concurrent']);
+	grunt.registerTask('test', ['mochaTest']);
 }
