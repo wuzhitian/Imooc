@@ -23,6 +23,7 @@ exports.index = function(req, res){
 
 //search page
 exports.search = function(req, res){
+	console.log(1);
 	var catId = req.query.cat;
 	var q = req.query.q;
 	var page = parseInt(req.query.p, 10) || 0;

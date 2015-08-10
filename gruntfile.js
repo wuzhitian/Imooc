@@ -1,6 +1,6 @@
 module.exports = function(grunt){
 	grunt.initConfig({
-		watch: {
+		'watch': {
 			jade: {
 				files: ["views/**"]
 				,options: {
@@ -15,11 +15,12 @@ module.exports = function(grunt){
 				}
 			}
 		}
-		,nodemon: {
+		,'nodemon': {
 			dev: {
 				script: 'app.js'
 				,options: {
-					args: []
+					args: ['dev']
+					,nodeArgs: ["--debug"]
 					,ignoredFiles: ['README.md', 'node_modules/**']
 					,watchedExtensions: ['js']
 					,watchedFolders: ["./"]
@@ -32,12 +33,12 @@ module.exports = function(grunt){
 				}
 			}
 		}
-		,nodeInspector: {
+		,'node-inspector': {
 			dev: {
 				options: {
 			      'web-port': 1337,
 			      'web-host': 'localhost',
-			      'debug-port': 5857,
+			      'debug-port': 5858,
 			      'save-live-edit': true,
 			      'no-preload': true,
 			      'stack-trace-limit': 4,
@@ -46,7 +47,7 @@ module.exports = function(grunt){
 			}
 		}
 		,concurrent: {
-			tasks: ['nodemon', 'watch', "nodeInspector"]
+			tasks: ['nodemon', 'watch', "node-inspector"]
 			,options: {
 				logConcurrentOutput: true
 			}
